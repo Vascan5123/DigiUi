@@ -10,7 +10,6 @@
    .DiscussionList-discussions--grid > li::marker {
     display: none;
   }
-   
    .DiscussionList-discussions--grid > li > div {
     height: 100%;
     margin-left: 0px;
@@ -108,14 +107,19 @@
 
 
 
-
-
+@media (max-width: 767px) {
+    #menu_open_id{
+        display: none !important;
+    }
+ }
+ 
 
 
 .IndexPage {
  @media (max-width: 767px) {
     .DiscussionList-discussions--grid > li {
         width: 85%;
+        margin: 15px;
     }
     .DiscussionList-discussions--grid {
         justify-content: center;
@@ -123,9 +127,6 @@
     .IndexPage-nav, .sideNav {
         width: 60%;
         display: none;
-    }
-    #menu_open_id{
-        display: none !important;
     }
  }
  @media (min-width: 767px)and(max-width: 1024px) {
@@ -182,6 +183,7 @@
     @media (max-width: 767px) {
         .DiscussionList-discussions--grid > li {
             width: 85%;
+            margin: 15px;
         }
         .DiscussionList-discussions--grid {
             justify-content: center;
