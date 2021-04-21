@@ -1,5 +1,6 @@
 import { extend, override } from 'flarum/extend';
 import IndexPage from 'flarum/components/IndexPage';
+import DiscussionPage from 'flarum/components/DiscussionPage';
 import DiscussionsUserPage from 'flarum/components/DiscussionsUserPage';
 import Button from 'flarum/components/Button';
 import Navigation from 'flarum/components/Navigation';
@@ -115,26 +116,70 @@ app.initializers.add('vascan/digi-ui', () => {
     }
   });
 
-  extend(IndexPage.prototype, 'actionItems', function (items) {
+  /* extend(DiscussionPage.prototype, 'sidebarItems', function (items) { */
     // Stergerea butoanelor existente
-    if (items.has('refresh')) {
-      items.remove('refresh');
-    }
-    if (items.has('markAllAsRead')) {
-      items.remove('markAllAsRead');
-    }
+  /*   if (items.has('controls')) {
+      items.remove('controls');
+    } */
 
-    // Adauga butonul pentru modificarea vizualizarii
-    items.add(
-      'gridLayout',
+    // Добавление кнопок выбора текста и изображений
+   /*  items.add(
+      'Original',
       Button.component({
-        title: this.gridLayout() ? app.translator.trans('list-grid-layouts.forum.index.list_tooltip') : app.translator.trans('list-grid-layouts.forum.index.grid_tooltip'),
-        icon: this.gridLayout() ? 'fas fa-list-ul' : 'fas fa-th-large',
-        className: 'Button Button--icon',
-        onclick: modifyLayout.bind(this),
-      })
+        title: "Original",
+        className: 'Button Button--primary',
+        onclick: imageOn.bind(this),
+      },
+        'Original'
+      )
     );
-  });
+    items.add(
+      'Text in chirilica',
+      Button.component({
+        title: "Text in chirilica",
+        className: 'Button Button--primary',
+        onclick: chirilicaOn.bind(this),
+      },
+        'Text in chirilica'
+      )
+    );
+    items.add(
+      'Text transliterat',
+      Button.component({
+        title: "Text transliterat",
+        className: 'Button Button--primary',
+        onclick: modifyLayout.bind(this),
+      },
+        'Text transliterat'
+      )
+    ); */
+
+/* 
+    function imageOn() {
+      let data = document.getElementsByClassName("PostStream-item")[0];
+      data = document.getElementsByClassName("Post-body")[0]
+      data = document.getElementsByTagName("img")
+      for (let i = 0; i < data.length; i++) {
+        data[i].style.display = "block";
+      }
+      console.log(data)
+    }
+    function chirilicaOn() {
+      let data = document.getElementsByClassName("PostStream-item")[0];
+      data = document.getElementsByClassName("Post-body")[0] */
+      /* data = document.getElementsByTagName("img")
+      for (let i = 0; i < data.length; i++) {
+        data[i].style.display = "block";
+      } */
+    /*   console.log(data)
+    } */
+
+
+
+
+
+
+  /* }); */
 
 
 });
