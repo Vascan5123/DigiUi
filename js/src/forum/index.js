@@ -1,13 +1,26 @@
+import app from 'flarum/common/app';
 import { extend, override } from 'flarum/extend';
+import PostUi from './components/PostUi';
+import CardItem from './components/CardItem';
 import IndexPage from 'flarum/components/IndexPage';
-import DiscussionPage from 'flarum/components/DiscussionPage';
 import DiscussionsUserPage from 'flarum/components/DiscussionsUserPage';
 import Button from 'flarum/components/Button';
 import Navigation from 'flarum/components/Navigation';
 import DiscussionList from 'flarum/components/DiscussionList';
 import DiscussionListItem from 'flarum/components/DiscussionListItem';
+import DiscussionControls from 'flarum/utils/DiscussionControls';
+import Dropdown from 'flarum/components/Dropdown';
+import icon from 'flarum/helpers/icon';
+import Link from 'flarum/components/Link';
+import extractText from 'flarum/utils/extractText';
+import humanTime from 'flarum/utils/humanTime';
+import avatar from 'flarum/helpers/avatar';
+import listItems from 'flarum/helpers/listItems';
+import highlight from 'flarum/helpers/highlight';
+import abbreviateNumber from 'flarum/utils/abbreviateNumber';
 
 app.initializers.add('vascan/digi-ui', () => {
+  PostUi();
   extend(IndexPage.prototype, 'init', function () {
     /* this.gridLayout = m.prop(false); */
   });
@@ -114,72 +127,30 @@ app.initializers.add('vascan/digi-ui', () => {
     } catch {
 
     }
+
+
+
+
+
+
+
+
+
+
+
+    /* if (app.current.matches(IndexPage)) {
+      return (
+        <div className={'DiscussionList' + (state.isSearchResults() ? ' DiscussionList--searchResults' : '')}>
+          <div class="DiscussionList-discussions flexCard">
+            {state.discussions.map((discussion, i) => {
+                return m(CardItem, {discussion: discussion});
+            })}
+          </div>
+          <div className="DiscussionList-loadMore">{loading}</div>
+        </div>
+      );} */
   });
-
-  /* extend(DiscussionPage.prototype, 'sidebarItems', function (items) { */
-    // Stergerea butoanelor existente
-  /*   if (items.has('controls')) {
-      items.remove('controls');
-    } */
-
-    // Добавление кнопок выбора текста и изображений
-   /*  items.add(
-      'Original',
-      Button.component({
-        title: "Original",
-        className: 'Button Button--primary',
-        onclick: imageOn.bind(this),
-      },
-        'Original'
-      )
-    );
-    items.add(
-      'Text in chirilica',
-      Button.component({
-        title: "Text in chirilica",
-        className: 'Button Button--primary',
-        onclick: chirilicaOn.bind(this),
-      },
-        'Text in chirilica'
-      )
-    );
-    items.add(
-      'Text transliterat',
-      Button.component({
-        title: "Text transliterat",
-        className: 'Button Button--primary',
-        onclick: modifyLayout.bind(this),
-      },
-        'Text transliterat'
-      )
-    ); */
-
-/* 
-    function imageOn() {
-      let data = document.getElementsByClassName("PostStream-item")[0];
-      data = document.getElementsByClassName("Post-body")[0]
-      data = document.getElementsByTagName("img")
-      for (let i = 0; i < data.length; i++) {
-        data[i].style.display = "block";
-      }
-      console.log(data)
-    }
-    function chirilicaOn() {
-      let data = document.getElementsByClassName("PostStream-item")[0];
-      data = document.getElementsByClassName("Post-body")[0] */
-      /* data = document.getElementsByTagName("img")
-      for (let i = 0; i < data.length; i++) {
-        data[i].style.display = "block";
-      } */
-    /*   console.log(data)
-    } */
-
-
-
-
-
-
-  /* }); */
-
-
+  
 });
+
+CardItem();

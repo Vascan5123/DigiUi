@@ -18,12 +18,18 @@
     padding-right: 0px;
     /* border: 1px solid #e8ecf3; */
     border-radius: 6px;
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 6px 18px rgba(14, 21, 47, 0.1),
+      0 -2px 6px rgba(14, 21, 47, 0.02);
+    box-shadow: 0 6px 18px rgba(14, 21, 47, 0.1),
+      0 -2px 6px rgba(14, 21, 47, 0.02);
     transition: .3s;
    }
    .DiscussionList-discussions--grid > li > div:hover {
     cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 6px 18px rgba(14, 21, 47, 0.2),
+      0 -2px 6px rgba(14, 21, 47, 0.05);
+    box-shadow: 0 6px 18px rgba(14, 21, 47, 0.2),
+      0 -2px 6px rgba(14, 21, 47, 0.05);
    }
    .DiscussionListItem-author--grid {
     display: block;
@@ -62,6 +68,7 @@
    }
    .DiscussionListItem-content--grid {
     padding-left: 0px;
+    padding-bottom: 15px;
    }
    .DiscussionListItem-title--grid {
     height: 100%;
@@ -73,29 +80,57 @@
     overflow: hidden;
    }
    .DiscussionListItem-main--grid {
-    padding: 12px;
+    padding: 15px;
     display: block;
+    position: relative;
+    padding-top: 24px;
+    overflow: hidden;
    }
    .DiscussionListItem-main--grid > .DiscussionListItem-info > .item-tags {
-    display: none;
+    margin-left: -.5em;
+    position: absolute;
+    top: 12px;
+    right: auto;
    }
    .DiscussionListItem-count{
       display: none;
    }
    .item-excerpt {
     display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
+    -webkit-line-clamp: 3 !important;
     -webkit-box-orient: vertical !important;
     margin-right: 50px;
- }
+    overflow: hidden;
+    font-size: 16px !important;
+    color: #777 !important;
+   }
+   .item-tags > .TagsLabel  > .TagLabel {
+    color: #4C6F86 !important;
+    background-color: transparent !important;
+   }
+   .TagLabel.colored .TagLabel-text {
+    color: #4C6F86 !important;
+    font-size: 13px !important;
+   }
+   .TagLabel {
+       font-size: 100% !important;
+   }
+   .TagLabel::after{
+       content: ',';
+   }
+   /* .item-tags:hover, .UserPage .DiscussionListItem-info>.item-tags:hover {
+    max-width: 150px !important;
+    -webkit-mask-image: unset !important;
+    overflow-x: hidden !important;
+   } */
 }
 
+    .item-terminalPost{
+        display: none !important;
+    }
    .DiscussionList-discussions--grid {
     list-style-type: none;
     padding: 0px;
-   }
-  .DiscussionListItem-main--grid > .DiscussionListItem-info > .item-tags {
-    display: none;
    }
    .DiscussionListItem-count{
       display: none;
@@ -126,7 +161,9 @@
     }
     .IndexPage-nav, .sideNav {
         width: 60%;
-        display: none;
+        position: relative !important;
+        z-index: auto !important;
+        transform: none !important;
     }
  }
  @media (min-width: 767px)and(max-width: 1024px) {
