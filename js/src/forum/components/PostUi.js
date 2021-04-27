@@ -11,13 +11,23 @@ export default function () {
 
         // Добавление кнопок выбора текста и изображений
         items.add(
-            'Original',
+            'Imaginii',
             Button.component({
-                title: "Original",
+                title: "Imaginii",
                 className: 'Button Button--primary',
                 onclick: imageOn.bind(this),
             },
-                'Original'
+                'Imaginii'
+            )
+        );
+        items.add(
+            'Text transliterat',
+            Button.component({
+                title: "Text transliterat",
+                className: 'Button Button--primary',
+                onclick: transliteranOn.bind(this),
+            },
+                'Text transliterat'
             )
         );
         items.add(
@@ -30,16 +40,7 @@ export default function () {
                 'Text in chirilica'
             )
         );
-        items.add(
-            'Text transliterat',
-            Button.component({
-                title: "Text transliterat",
-                className: 'Button Button--primary',
-                /* onclick: modifyLayout.bind(this), */
-            },
-                'Text transliterat'
-            )
-        );
+        
         /* if (y == undefined) {
                     console.log()
                 } else {
@@ -56,7 +57,9 @@ export default function () {
         console.log(data) */
 
 
-
+        const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
+        /*  console.log('Привіт:', cyrillicPattern.test('Привіт'));
+            console.log('Hello:', cyrillicPattern.test('Hello')); */
         let data = document.getElementsByClassName("PostStream-item")[0];
         data = document.getElementsByClassName("Post-body")[0]
         data = document.getElementsByTagName("p");
@@ -82,12 +85,24 @@ export default function () {
                 }
             }
         }
-        function chirilicaOn() {
-
+        function transliteranOn() {
             for (let i = 0; i < data.length; i++) {
                 if (data[i] != undefined) {
                     let y = data[i].getElementsByTagName("img");
-                    if (y.length == 0) {
+                    if (y.length == 0 && !/[^a-z][а-я]/.test(data[i].innerHTML)) {
+                        data[i].style.display = "block"
+                    } else {
+                        data[i].style.display = "none"
+                    }
+                }
+            }
+        }
+
+        function chirilicaOn() {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] != undefined) {
+                    let y = data[i].getElementsByTagName("img");
+                    if (y.length == 0 && /[^a-z][а-я]/.test(data[i].innerHTML)) {
                         data[i].style.display = "block"
                     } else {
                         data[i].style.display = "none"
@@ -97,7 +112,7 @@ export default function () {
         }
 
 
-
+        
 
 
 

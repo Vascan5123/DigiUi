@@ -62,10 +62,11 @@ export default function () {
                         title={extractText(
                             app.translator.trans('core.forum.discussion_list.started_text', { user: user, ago: humanTime(discussion.createdAt()) })
                         )}
-                        oncreate={function (vnode) {
-                            $(vnode.dom).tooltip({ placement: 'right' });
-                        }}
+                    /* oncreate={function (vnode) {
+                        $(vnode.dom).tooltip({ placement: 'right' });
+                    }} */
                     >
+                        {user.data.attributes.avatarUrl = ""}
                         {avatar(user, { title: '' })}
                     </Link>
 
