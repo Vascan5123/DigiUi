@@ -1,0 +1,8 @@
+digi-ui:
+  forum:
+    postui:
+      buttons:
+        images: 'Imagini'
+        trans_text: 'Text transliterat'
+        cyr_text: 'Text in chirilică'
+    what_is_new: 'Articole digitale publicate recent'

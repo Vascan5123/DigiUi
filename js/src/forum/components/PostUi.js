@@ -11,13 +11,13 @@ export default function () {
 
         // Добавление кнопок выбора текста и изображений
         items.add(
-            'Imaginii',
+            'Imagini', 
             Button.component({
-                title: "Imaginii",
+                title: "Imagini",
                 className: 'Button Button--primary',
                 onclick: imageOn.bind(this),
             },
-                'Imaginii'
+                app.translator.trans('digi-ui.forum.postui.buttons.images')
             )
         );
         items.add(
@@ -27,7 +27,7 @@ export default function () {
                 className: 'Button Button--primary',
                 onclick: transliteranOn.bind(this),
             },
-                'Text transliterat'
+                app.translator.trans('digi-ui.forum.postui.buttons.trans_text')
             )
         );
         items.add(
@@ -37,7 +37,7 @@ export default function () {
                 className: 'Button Button--primary',
                 onclick: chirilicaOn.bind(this),
             },
-                'Text in chirilica'
+                app.translator.trans('digi-ui.forum.postui.buttons.cyr_text')
             )
         );
         
