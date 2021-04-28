@@ -54,7 +54,7 @@ app.initializers.add('vascan/digi-ui', () => {
     // Добавляем текст сверху
     items.add(
       'Text_title_center_block',
-      <p class="Text_title_center_block_class"><span> What's new</span></p>)
+      <p class="Text_title_center_block_class"><span> {app.translator.trans('digi-ui.forum.what_is_new')}</span></p>)
   });
   // Adding menu button
   override(Navigation.prototype, 'view', function () {

@@ -1,0 +1,8 @@
+digi-ui:
+  forum:
+    postui:
+      buttons:
+        images: 'Images'
+        trans_text: 'Transliterated text'
+        cyr_text: 'Cyrillic text'
+    what_is_new: "What's new"
