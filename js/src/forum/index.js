@@ -8,16 +8,11 @@ import Button from 'flarum/components/Button';
 import Navigation from 'flarum/components/Navigation';
 import DiscussionList from 'flarum/components/DiscussionList';
 import DiscussionListItem from 'flarum/components/DiscussionListItem';
-import DiscussionControls from 'flarum/utils/DiscussionControls';
-import Dropdown from 'flarum/components/Dropdown';
-import icon from 'flarum/helpers/icon';
-import Link from 'flarum/components/Link';
-import extractText from 'flarum/utils/extractText';
-import humanTime from 'flarum/utils/humanTime';
+import ComposerBody from 'flarum/components/ComposerBody';
+import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import TextEditor from 'flarum/components/TextEditor';
 import avatar from 'flarum/helpers/avatar';
 import listItems from 'flarum/helpers/listItems';
-import highlight from 'flarum/helpers/highlight';
-import abbreviateNumber from 'flarum/utils/abbreviateNumber';
 
 app.initializers.add('vascan/digi-ui', () => {
   PostUi();
@@ -114,7 +109,6 @@ app.initializers.add('vascan/digi-ui', () => {
     }
     catch { }
   });
-
   extend(DiscussionList.prototype, 'view', function (view) {
     let elementClassName;
     // Modificare clasa DiscussionList-discussions
@@ -150,7 +144,47 @@ app.initializers.add('vascan/digi-ui', () => {
         </div>
       );} */
   });
-  
+  override(require('@fof-upload').components.FileManagerButton.prototype, 'view', function (original) {
+    return Button.component({
+      className: 'Button fof-upload-button Button--icon big_upload_icon',
+      onclick: this.fileManagerButtonClicked.bind(this),
+      icon: 'fas fa-folder-open',
+      title: app.translator.trans('fof-upload.forum.buttons.media'),
+    })
+  });
+  extend(TextEditor.prototype, 'oninput', textEditorF);
+  override(ComposerBody.prototype, 'view', function () {
+    return (
+      <div when={this.hasChanges.bind(this)}>
+        <div className={'ComposerBody ' + (this.attrs.className || '')}>
+          {/* {avatar(this.attrs.user, { className: 'ComposerBody-avatar' })} */}
+          <div className="ComposerBody-content">
+            <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
+            <div className="ComposerBody-editor">
+              {TextEditor.component({
+                submitLabel: this.attrs.submitLabel,
+                placeholder: "",
+                disabled: this.loading || this.attrs.disabled,
+                composer: this.composer,
+                preview: this.jumpToPreview && this.jumpToPreview.bind(this),
+                onchange: this.composer.fields.content,
+                onsubmit: this.onsubmit.bind(this),
+                value: this.composer.fields.content(),
+              })}
+            </div>
+          </div>
+          {LoadingIndicator.component({ className: 'ComposerBody-loading' + (this.loading ? ' active' : '') })}
+        </div>
+      </div>
+    );
+  })
 });
-
+function textEditorF() {
+  let text = document.getElementById("textarea1").value;
+  if (text.length > 0) {
+    document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");
+  } else {
+    document.getElementsByClassName("fof-upload-button")[0].classList.add("big_upload_icon");
+  }
+}
 CardItem();

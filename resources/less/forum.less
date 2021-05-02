@@ -274,6 +274,7 @@
     transform: translate(0%, 0%) !important;
  }
  .IndexPage-nav, .sideNav {
+    overflow-y: scroll;
     position: fixed;
     left: 0%;
     top: 0%;
@@ -284,6 +285,18 @@
     transform: translate(-100%, 0%);
     transition: .3s;
 }
+.sideNav::-webkit-scrollbar {
+    width: 0px;
+  }
+.sideNav::-webkit-scrollbar-track {
+    background: #fafafa;
+  }
+.sideNav::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+.sideNav::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 .sideNav > ul {
     z-index: 3;
     width: 100%;
@@ -319,4 +332,107 @@
       0 -2px 6px rgba(14, 21, 47, 0.05);
     box-shadow: 0 6px 18px rgba(14, 21, 47, 0.2),
       0 -2px 6px rgba(14, 21, 47, 0.05);
+}
+
+
+.fof-upload-button {
+    transition: .5s;
+}
+.big_upload_icon {
+    position: absolute !important;
+    width: auto !important;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    background: #D7DFEA;
+    transition: .5s;
+    animation: btn_upload_anim .8s ease-in-out;
+}
+.big_upload_icon::after {
+    content: "Adaugă fișiere";
+    color: #506C90;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 15px;
+    animation: btn_upload_after_anim .8s;
+}
+.big_upload_icon > i {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 26px !important;
+}
+
+@keyframes btn_upload_anim {
+    0% {
+      left: 20%;
+      top: 95%;
+    }
+    100% {
+      left: 50%;
+      top: 50%;
+    }
+}
+@keyframes btn_upload_after_anim {
+    0% {
+        font-size: 0rem;
+        margin-top: 0px;
+    }
+    100% {
+        font-size: 1.1rem;
+        margin-top: 15px;
+    }
+}
+
+
+
+
+/* 
+
+.fileManager_open_2{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    background: #D7DFEA;
+    transition: .3s;
+}
+.fileManager_open_2:hover {
+    cursor: pointer;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+    background: #c0c8d3;
+}
+#fileManager_open_id {
+    margin: auto;
+}
+#fileManager_open_id > i {
+    font-size: 26px;
+    color: #667C99;
+}
+.fileManager_text {
+    color: #506C90;
+    font-size: 1.1rem;
+    font-weight: 400;
+} */
+.ComposerBody-content {
+    margin: 0% !important;
+}
+.TextEditor-controls {
+    margin: 0px !important;
+    padding: 10px 0px !important;
 }

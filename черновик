@@ -1,0 +1,43 @@
+
+              {/* <div class="fileManager_open_2" onclick={fileManagerButtonClicked2.bind(this)}>
+                <span id="fileManager_open_id">
+                  <i class="icon fas fa-folder-open"></i>
+                </span>
+                <span class="fileManager_text">Adaugă fișiere</span>
+              </div> */
+              /* onchange: console.log(this.composer.fields.content()), */}
+
+
+
+
+
+
+
+
+override(require('@fof-upload').components.FileManagerModal.prototype, 'onUpload', function (original) {
+
+
+    return ""
+  });
+  function fileManagerButtonClicked2() {
+    app.modal.show(require('@fof-upload').components.FileManagerModal, {
+
+      uploader: TextEditor.prototype.uploader,
+    });
+
+
+    /* extend(TextEditor.prototype, 'oninit', function () {
+      this.uploader = new Uploader();
+  }); */
+    /* require('@fof-upload').components.FileManagerButton.prototype.fileManagerButtonClicked.bind(this) */
+    /* require('@fof-upload').components.FileManagerButton.prototype.fileManagerButtonClicked.bind(this) */
+    /* override(require('@fof-upload').components.FileManagerButton.prototype, 'view', function (original) {
+      this.fileManagerButtonClicked()
+      return Button.component({
+        className: 'Button fof-upload-button Button--icon',
+        onload: this.fileManagerButtonClicked.bind(this),
+        icon: 'fas fa-folder-open',
+        title: app.translator.trans('fof-upload.forum.buttons.media'),
+      })
+    }); */
+  }
