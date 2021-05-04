@@ -62,12 +62,17 @@ export default function () {
                         title={extractText(
                             app.translator.trans('core.forum.discussion_list.started_text', { user: user, ago: humanTime(discussion.createdAt()) })
                         )}
+                    //tooltip
                     /* oncreate={function (vnode) {
                         $(vnode.dom).tooltip({ placement: 'right' });
                     }} */
                     >
-                        {user.data.attributes.avatarUrl = ""}
-                        {avatar(user, { title: '' })}
+                        {/* user.data.attributes.avatarUrl = "" */}
+                        {/* avatar(user, { title: '' }) */}
+                        <span class="Avatar ">
+                            {/* <img class="Avatar" data-src="https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-autumnal-fall-big-tree-park-background-cartoon-design-backgroundfallbig-treefallen-leavespark-image_53954.jpg" /> */}
+                        </span>
+
                     </Link>
 
                     <ul className="DiscussionListItem-badges badges">{listItems(discussion.badges().toArray())}</ul>
