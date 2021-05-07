@@ -121,17 +121,6 @@ app.initializers.add('vascan/digi-ui', () => {
     } catch {
 
     }
-
-
-
-
-
-
-
-
-
-
-
     /* if (app.current.matches(IndexPage)) {
       return (
         <div className={'DiscussionList' + (state.isSearchResults() ? ' DiscussionList--searchResults' : '')}>
@@ -145,14 +134,37 @@ app.initializers.add('vascan/digi-ui', () => {
       );} */
   });
   override(require('@fof-upload').components.FileManagerButton.prototype, 'view', function (original) {
-    return Button.component({
-      className: 'Button fof-upload-button Button--icon big_upload_icon',
-      onclick: this.fileManagerButtonClicked.bind(this),
-      icon: 'fas fa-folder-open',
-      title: app.translator.trans('fof-upload.forum.buttons.media'),
-    })
+    if (app.current.matches(IndexPage)) {
+      return Button.component({
+        className: 'Button fof-upload-button Button--icon big_upload_icon',
+        onclick: this.fileManagerButtonClicked.bind(this),
+        icon: 'fas fa-folder-open',
+        title: app.translator.trans('fof-upload.forum.buttons.media'),
+      })
+    } else {
+      return Button.component({
+        className: 'Button fof-upload-button Button--icon',
+        onclick: this.fileManagerButtonClicked.bind(this),
+        icon: 'fas fa-folder-open',
+        title: app.translator.trans('fof-upload.forum.buttons.media'),
+      })
+    }
   });
   extend(TextEditor.prototype, 'oninput', textEditorF);
+  override(TextEditor.prototype, 'buildEditorParams', function () {
+    return {
+      classNames: ['FormControl', 'Composer-flexible', 'TextEditor-editor', this.attrs.class1],
+      disabled: this.disabled,
+      placeholder: this.attrs.placeholder || '',
+      value: this.value,
+      oninput: this.oninput.bind(this),
+      inputListeners: [],
+      onsubmit: () => {
+        this.onsubmit();
+        m.redraw();
+      },
+    };
+  })
   override(ComposerBody.prototype, 'view', function () {
     return (
       <div when={this.hasChanges.bind(this)}>
@@ -162,6 +174,7 @@ app.initializers.add('vascan/digi-ui', () => {
             <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
             <div className="ComposerBody-editor">
               {TextEditor.component({
+                class1: "textarea_create_post",
                 submitLabel: this.attrs.submitLabel,
                 placeholder: "",
                 disabled: this.loading || this.attrs.disabled,
@@ -180,11 +193,13 @@ app.initializers.add('vascan/digi-ui', () => {
   })
 });
 function textEditorF() {
-  let text = document.getElementById("textarea1").value;
-  if (text.length > 0) {
-    document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");
-  } else {
-    document.getElementsByClassName("fof-upload-button")[0].classList.add("big_upload_icon");
+  if (app.current.matches(IndexPage)) {
+    let text = document.getElementsByClassName("textarea_create_post")[0].value;
+    if (text.length > 0) {
+      document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");
+    } else {
+      document.getElementsByClassName("fof-upload-button")[0].classList.add("big_upload_icon");
+    }
   }
 }
 CardItem();
