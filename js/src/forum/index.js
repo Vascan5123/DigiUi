@@ -135,6 +135,7 @@ app.initializers.add('vascan/digi-ui', () => {
   });
   override(require('@fof-upload').components.FileManagerButton.prototype, 'view', function (original) {
     if (app.current.matches(IndexPage)) {
+      console.log("1", app.current)
       return Button.component({
         className: 'Button fof-upload-button Button--icon big_upload_icon',
         onclick: this.fileManagerButtonClicked.bind(this),
@@ -142,6 +143,7 @@ app.initializers.add('vascan/digi-ui', () => {
         title: app.translator.trans('fof-upload.forum.buttons.media'),
       })
     } else {
+      console.log(app.current)
       return Button.component({
         className: 'Button fof-upload-button Button--icon',
         onclick: this.fileManagerButtonClicked.bind(this),
@@ -167,27 +169,25 @@ app.initializers.add('vascan/digi-ui', () => {
   })
   override(ComposerBody.prototype, 'view', function () {
     return (
-      <div when={this.hasChanges.bind(this)}>
-        <div className={'ComposerBody ' + (this.attrs.className || '')}>
-          {/* {avatar(this.attrs.user, { className: 'ComposerBody-avatar' })} */}
-          <div className="ComposerBody-content">
-            <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
-            <div className="ComposerBody-editor">
-              {TextEditor.component({
-                class1: "textarea_create_post",
-                submitLabel: this.attrs.submitLabel,
-                placeholder: "",
-                disabled: this.loading || this.attrs.disabled,
-                composer: this.composer,
-                preview: this.jumpToPreview && this.jumpToPreview.bind(this),
-                onchange: this.composer.fields.content,
-                onsubmit: this.onsubmit.bind(this),
-                value: this.composer.fields.content(),
-              })}
-            </div>
+      <div className={'ComposerBody ' + (this.attrs.className || '')}>
+        {/* {avatar(this.attrs.user, { className: 'ComposerBody-avatar' })} */}
+        <div className="ComposerBody-content">
+          <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
+          <div className="ComposerBody-editor">
+            {TextEditor.component({
+              class1: "textarea_create_post",
+              submitLabel: this.attrs.submitLabel,
+              placeholder: "",
+              disabled: this.loading || this.attrs.disabled,
+              composer: this.composer,
+              preview: this.jumpToPreview && this.jumpToPreview.bind(this),
+              onchange: this.composer.fields.content,
+              onsubmit: this.onsubmit.bind(this),
+              value: this.composer.fields.content(),
+            })}
           </div>
-          {LoadingIndicator.component({ className: 'ComposerBody-loading' + (this.loading ? ' active' : '') })}
         </div>
+        {LoadingIndicator.component({ className: 'ComposerBody-loading' + (this.loading ? ' active' : '') })}
       </div>
     );
   })
