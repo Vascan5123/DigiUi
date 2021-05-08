@@ -11,7 +11,7 @@ export default function () {
 
         // Добавление кнопок выбора текста и изображений
         items.add(
-            'Imagini', 
+            'Imagini',
             Button.component({
                 title: "Imagini",
                 className: 'Button Button--primary',
@@ -40,39 +40,68 @@ export default function () {
                 app.translator.trans('digi-ui.forum.postui.buttons.cyr_text')
             )
         );
-        
-        /* if (y == undefined) {
-                    console.log()
-                } else {
-                    img[i] = data[i];
-                } */
-        /* data[i].textContent = ""
-        text = data[i].textContent; */
-        /* let data = document.getElementsByClassName("PostStream-item")[0];
-           data = document.getElementsByClassName("Post-body")[0]
-           data = document.getElementsByTagName("img") */
-        /* for (let i = 0; i < data.length; i++) {
-            data[i].style.display = "block";
-        }
-        console.log(data) */
 
 
         const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
-        /*  console.log('Привіт:', cyrillicPattern.test('Привіт'));
-            console.log('Hello:', cyrillicPattern.test('Hello')); */
         let data = document.getElementsByClassName("PostStream-item")[0];
         data = document.getElementsByClassName("Post-body")[0]
         data = document.getElementsByTagName("p");
-        /* for (let i = 0; i < data.length; i++) {
-            if (data[i] != undefined) {
-                let y = data[i].getElementsByTagName("img");
-                if (y.length == 0) {
-                    data[i].style.display = "none"
-                }
-            }
-        } */
+
 
         function imageOn() {
+            let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+            for (let i = 0; i < images.length; i++) {
+                images[i].style.display = "block"
+            }
+
+            let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            for (let i = 0; i < span.length; i++) {
+                span[i].style.display = "none"
+            }
+        }
+
+        function transliteranOn() {
+            let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            for (let i = 0; i < transliterat.length; i++) {
+                if (transliterat[i].classList.contains('transliterat')) {
+                    transliterat[i].style.display = "block"
+                }
+            }
+
+            let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+            for (let i = 0; i < images.length; i++) {
+                images[i].style.display = "none"
+            }
+            let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            for (let i = 0; i < chirilic.length; i++) {
+                if (chirilic[i].classList.contains('chirilic')) {
+                    chirilic[i].style.display = "none"
+                }
+            }
+        }
+
+        function chirilicaOn() {
+            let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            for (let i = 0; i < chirilic.length; i++) {
+                if (chirilic[i].classList.contains('chirilic')) {
+                    chirilic[i].style.display = "block"
+                }
+            }
+
+            let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+            for (let i = 0; i < images.length; i++) {
+                images[i].style.display = "none"
+            }
+            let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            for (let i = 0; i < transliterat.length; i++) {
+                if (transliterat[i].classList.contains('transliterat')) {
+                    transliterat[i].style.display = "none"
+                }
+            }
+        }
+
+
+        /* function imageOn() {
 
             for (let i = 0; i < data.length; i++) {
                 if (data[i] != undefined) {
@@ -109,10 +138,10 @@ export default function () {
                     }
                 }
             }
-        }
+        } */
 
 
-        
+
 
 
 
