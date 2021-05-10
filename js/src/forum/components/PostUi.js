@@ -49,53 +49,97 @@ export default function () {
 
 
         function imageOn() {
-            let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
-            for (let i = 0; i < images.length; i++) {
-                images[i].style.display = "block"
-            }
-
             let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            for (let i = 0; i < span.length; i++) {
-                span[i].style.display = "none"
+            if (span.length > 0) {
+                for (let i = 0; i < span.length; i++) {
+                    span[i].style.display = "none"
+                }
+
+                let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+                for (let i = 0; i < images.length; i++) {
+                    images[i].style.display = "block"
+                }
+            } else {
+                console.log("span not found");
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i] != undefined) {
+                        let y = data[i].getElementsByTagName("img");
+                        if (y.length == 0) {
+                            data[i].style.display = "none"
+                        } else {
+                            data[i].style.display = "block"
+                        }
+                    }
+                }
             }
         }
 
         function transliteranOn() {
-            let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            for (let i = 0; i < transliterat.length; i++) {
-                if (transliterat[i].classList.contains('transliterat')) {
-                    transliterat[i].style.display = "block"
+            let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            if (span.length > 0) {
+                let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                for (let i = 0; i < transliterat.length; i++) {
+                    if (transliterat[i].classList.contains('transliterat')) {
+                        transliterat[i].style.display = "block"
+                    }
                 }
-            }
 
-            let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
-            for (let i = 0; i < images.length; i++) {
-                images[i].style.display = "none"
-            }
-            let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            for (let i = 0; i < chirilic.length; i++) {
-                if (chirilic[i].classList.contains('chirilic')) {
-                    chirilic[i].style.display = "none"
+                let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+                for (let i = 0; i < images.length; i++) {
+                    images[i].style.display = "none"
+                }
+                let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                for (let i = 0; i < chirilic.length; i++) {
+                    if (chirilic[i].classList.contains('chirilic')) {
+                        chirilic[i].style.display = "none"
+                    }
+                }
+            } else {
+                console.log("span not found");
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i] != undefined) {
+                        let y = data[i].getElementsByTagName("img");
+                        if (y.length == 0 && !/[^a-z][а-я]/.test(data[i].innerHTML)) {
+                            data[i].style.display = "block"
+                        } else {
+                            data[i].style.display = "none"
+                        }
+                    }
                 }
             }
         }
 
         function chirilicaOn() {
-            let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            for (let i = 0; i < chirilic.length; i++) {
-                if (chirilic[i].classList.contains('chirilic')) {
-                    chirilic[i].style.display = "block"
+            let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+            if (span.length > 0) {
+                let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                for (let i = 0; i < chirilic.length; i++) {
+                    if (chirilic[i].classList.contains('chirilic')) {
+                        chirilic[i].style.display = "block"
+                    }
                 }
-            }
 
-            let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
-            for (let i = 0; i < images.length; i++) {
-                images[i].style.display = "none"
-            }
-            let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            for (let i = 0; i < transliterat.length; i++) {
-                if (transliterat[i].classList.contains('transliterat')) {
-                    transliterat[i].style.display = "none"
+                let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+                for (let i = 0; i < images.length; i++) {
+                    images[i].style.display = "none"
+                }
+                let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                for (let i = 0; i < transliterat.length; i++) {
+                    if (transliterat[i].classList.contains('transliterat')) {
+                        transliterat[i].style.display = "none"
+                    }
+                }
+            } else {
+                console.log("span not found");
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i] != undefined) {
+                        let y = data[i].getElementsByTagName("img");
+                        if (y.length == 0 && /[^a-z][а-я]/.test(data[i].innerHTML)) {
+                            data[i].style.display = "block"
+                        } else {
+                            data[i].style.display = "none"
+                        }
+                    }
                 }
             }
         }
