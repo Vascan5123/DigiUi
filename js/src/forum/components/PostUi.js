@@ -11,7 +11,7 @@ export default function () {
 
         // Добавление кнопок выбора текста и изображений
         items.add(
-            'Imagini',
+            'Imagini_button',
             Button.component({
                 id: "Button_text_imagini",
                 title: "Imagini",
@@ -22,7 +22,7 @@ export default function () {
             )
         );
         items.add(
-            'Text transliterat',
+            'Text transliterat_button',
             Button.component({
                 id: "Button_text_transliterat",
                 title: "Text transliterat",
@@ -33,7 +33,7 @@ export default function () {
             )
         );
         items.add(
-            'Text in chirilica',
+            'Text in chirilica_button',
             Button.component({
                 id: "Button_text_chirilica",
                 title: "Text in chirilica",
@@ -50,42 +50,29 @@ export default function () {
         data = document.getElementsByClassName("Post-body")[0]
         data = document.getElementsByTagName("p");
 
-
-        let all_images = document.getElementsByClassName("PostStream-item")[0]
-        if (all_images != undefined) {
-            all_images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+        let all_images = document.getElementsByClassName("Post-body")[0]
+        if (all_images) {
+            let button = document.getElementById("Button_text_imagini")
+            all_images = document.getElementsByClassName("Post-body")[0].getElementsByTagName("img")
             if (all_images.length < 1) {
-                document.getElementById("Button_text_imagini").classList.add("disabled")
+                button.classList.add("disabled")
             }
         }
 
-        let all_transliterat = document.getElementsByClassName("PostStream-item")[0]
-        if (all_transliterat != undefined) {
-            all_transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            if (all_transliterat.length < 1) {
-                document.getElementById("Button_text_transliterat").classList.add("disabled")
-            }
-            for (let i = 0; i < all_transliterat.length; i++) {
-                if (!all_transliterat[i].classList.contains('transliterat')) {
-                    if (all_transliterat.length < 1) {
-                        document.getElementById("Button_text_transliterat").classList.add("disabled")
-                    }
-                }
+
+        let all_transliterat = document.getElementsByClassName("transliterat")
+        if (all_transliterat.length < 1) {
+            let button = document.getElementById("Button_text_transliterat")
+            if (button) {
+                button.classList.add("disabled")
             }
         }
 
-        let all_chirilic = document.getElementsByClassName("PostStream-item")[0]
-        if (all_chirilic != undefined) {
-            all_chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
-            if (all_chirilic.length < 1) {
-                document.getElementById("Button_text_chirilica").classList.add("disabled")
-            }
-            for (let i = 0; i < all_chirilic.length; i++) {
-                if (!all_chirilic[i].classList.contains('chirilic')) {
-                    if (all_chirilic.length < 1) {
-                        document.getElementById("Button_text_chirilica").classList.add("disabled")
-                    }
-                }
+        let all_chirilic = document.getElementsByClassName("chirilic")
+        if (all_chirilic.length < 1) {
+            let button = document.getElementById("Button_text_chirilica")
+            if (button) {
+                button.classList.add("disabled")
             }
         }
 
