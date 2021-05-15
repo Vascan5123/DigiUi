@@ -3,6 +3,7 @@ import { extend, override } from 'flarum/extend';
 import PostUi from './components/PostUi';
 import CardItem from './components/CardItem';
 import IndexPage from 'flarum/components/IndexPage';
+import UserPage from 'flarum/components/UserPage';
 import DiscussionsUserPage from 'flarum/components/DiscussionsUserPage';
 import Button from 'flarum/components/Button';
 import Navigation from 'flarum/components/Navigation';
@@ -66,7 +67,7 @@ app.initializers.add('vascan/digi-ui', () => {
   });
   // This is Menu button
   function getMenuButton() {
-    if (app.current.matches(IndexPage)) {
+    if (!app.current.matches(UserPage)) {
       return (
         <a id="menu_open_id" class="Button Button--icon hasIcon" title="Menu" active="false" type="button" onclick={menuOn.bind(this)}>
           <i class="fas fa-bars Button-icon"></i>

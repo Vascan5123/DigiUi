@@ -12,6 +12,7 @@ import listItems from 'flarum/helpers/listItems';
 import highlight from 'flarum/helpers/highlight';
 import abbreviateNumber from 'flarum/utils/abbreviateNumber';
 
+import { escapeRegExp } from 'lodash-es';
 export default function () {
     override(DiscussionListItem.prototype, 'view', function () {
         const discussion = this.attrs.discussion;
@@ -28,7 +29,7 @@ export default function () {
             if (post) {
                 jumpTo = post.number();
             }
-
+            console.log(this.attrs.params.q)
             const phrase = escapeRegExp(this.attrs.params.q);
             this.highlightRegExp = new RegExp(phrase + '|' + phrase.trim().replace(/\s+/g, '|'), 'gi');
         } else {
