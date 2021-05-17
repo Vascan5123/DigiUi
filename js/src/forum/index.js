@@ -14,20 +14,19 @@ import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import TextEditor from 'flarum/components/TextEditor';
 import avatar from 'flarum/helpers/avatar';
 import listItems from 'flarum/helpers/listItems';
+import ItemList from 'flarum/common/utils/ItemList';
+import LinkButton from 'flarum/common/components/LinkButton';
+
 
 app.initializers.add('vascan/digi-ui', () => {
   PostUi();
   extend(IndexPage.prototype, 'init', function () {
     /* this.gridLayout = m.prop(false); */
   });
-  extend(IndexPage.prototype, 'sidebarItems', function (items) {
-    // Убераем левое меню
-    /* if (items.has('newDiscussion')) {
-      items.remove('newDiscussion');
-    }
-    if (items.has('nav')) {
-      items.remove('nav');
-    } */
+  /* override(IndexPage.prototype, '', function () {
+  }); */
+  extend(IndexPage.prototype, 'view', function (view) {
+    view.children[1].children[0].children[0].attrs.className = "IndexPage-nav sideNav openMenu_class"
   });
   extend(IndexPage.prototype, 'actionItems', function (items) {
     // Stergerea butoanelor existente
@@ -44,6 +43,7 @@ app.initializers.add('vascan/digi-ui', () => {
       items.remove('sort');
     }
     // Добавляем блок jumbotron сверху
+    console.log()
     items.add(
       'jumbotron',
       <div class="jumbotron_class"></div>)
@@ -166,9 +166,9 @@ app.initializers.add('vascan/digi-ui', () => {
       },
     };
   })
-  extend(ComposerBody.prototype, 'view', function(view) {
+  extend(ComposerBody.prototype, 'view', function (view) {
     view.children[0].children.shift()
-    });
+  });
 });
 function textEditorF() {
   if (app.current.matches(IndexPage)) {

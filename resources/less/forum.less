@@ -167,7 +167,7 @@
  }
  @media (min-width: 767px)and(max-width: 1024px) {
     .DiscussionList-discussions--grid > li {
-        width: 30%;
+        width: 29%;
         margin: 10px;
     }
     .DiscussionList-discussions--grid {
@@ -180,6 +180,10 @@
     }
     .sideNav>ul>li, .sideNav .Dropdown-menu>li {
         display: block !important;
+    }
+    .IndexPage-results {
+        margin-left: 130px;
+        margin-right: 20px;
     }
  }
  @media (min-width: 1024px) {
@@ -198,6 +202,10 @@
     .IndexPage > .container {
         width: 900px;
     }
+    .IndexPage-results {
+        margin-left: 130px;
+        margin-right: 20px;
+    }
  }
  @media (min-width: 1504px) {
     .IndexPage > .container {
@@ -207,6 +215,10 @@
         min-width: 15%;
         zoom: 1.1;
         padding: 50px 25px 25px 25px;
+    }
+    .IndexPage-results {
+        margin-left: 0px;
+        margin-right: 0px;
     }
  }
 }
@@ -256,8 +268,19 @@
 
 
 
-
-
+/* 
+.IndexPage-nav, .sideNav {
+    overflow-y: scroll;
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    z-index: 3;
+    height: 100%;
+    background: #f3f3f3;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transform: translate(-100%, 0%);
+    transition: .3s;
+} */
 
 
 
@@ -276,7 +299,6 @@
     height: 100%;
     background: #f3f3f3;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transform: translate(-100%, 0%);
     transition: .3s;
 }
 .sideNav::-webkit-scrollbar {
@@ -438,4 +460,79 @@
 .TextEditor-controls {
     margin: 0px !important;
     padding: 10px 0px !important;
+}
+
+
+.Header-navigation {
+    margin-left: 25px !important;
+}
+
+
+.dropdown-menu > li > a {
+    transition: .5s;
+}
+.openMenu_class {
+    width: 100px !important;
+    min-width: 5% !important;
+    background: transparent !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.0) !important;
+    padding: 50px 15px 15px 15px !important;
+    .IndexPage-newDiscussion {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        text-align: center;
+        background: transparent !important;
+        padding: 5px !important;
+        color: #667c99 !important;
+        width: 100%;
+    }
+    .IndexPage-newDiscussion > i {
+        display: block !important;
+        float: none !important;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        margin: auto !important;
+        font-size: 1.3rem !important;
+        padding: 5px;
+    }
+    .IndexPage-newDiscussion > span {
+        font-size: 10px !important;
+        font-weight: normal !important;
+        width: 100%;
+        overflow: hidden;
+    }
+    .dropdown-menu > li {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .dropdown-menu > li > a {
+        display: flex;
+        flex-direction: column !important;
+        justify-content: center;
+        justify-self: center;
+        text-align: center;
+        padding: 0px !important;
+    }
+    .dropdown-menu > li > a > i {
+        float: none !important;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        margin: auto !important;
+        font-size: 1.3rem !important;
+        padding: 5px;
+    }
+    .dropdown-menu > li > a > span {
+        font-size: 10px !important;
+        font-weight: normal !important;
+    }
+    .TagLinkButton {
+        display: none !important;
+    }
+    .item-nav {
+        margin: 0% !important;
+    }
 }
