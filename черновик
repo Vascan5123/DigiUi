@@ -1,4 +1,83 @@
 
+
+
+
+
+
+
+
+
+
+
+
+  /* override(IndexPage.prototype, '', function () {
+  }); */
+  /* extend(IndexPage.prototype, 'view', function (view) {
+    view.children[1].children[0].children[0].attrs.className = "IndexPage-nav sideNav openMenu_class"
+  }); */
+
+
+
+
+
+  
+
+
+
+
+  // Adding menu button
+  /* override(Navigation.prototype, 'view', function () {
+    const { history, pane } = app;
+    return (
+      <div
+        className={'Navigation ButtonGroup ' + (this.attrs.className || '')}
+        onmouseenter={pane && pane.show.bind(pane)}
+        onmouseleave={pane && pane.onmouseleave.bind(pane)}
+      >
+        {history.canGoBack() ? [this.getBackButton(), this.getPaneButton()] : [getMenuButton(), this.getDrawerButton()]}
+      </div>
+    );
+  }); */
+  // This is Menu button
+  /* function getMenuButton() {
+    if (!app.current.matches(UserPage)) {
+      return (
+        <a id="menu_open_id" class="Button Button--icon hasIcon" title="Menu" active="false" type="button" onclick={menuOn.bind(this)}>
+          <i class="fas fa-bars Button-icon"></i>
+        </a>
+      );
+    }
+  } */
+  function menuOn() {
+    let nav = document.getElementsByClassName("IndexPage-nav")[0];
+    if (nav.classList.contains('openMenu_class')) {
+      nav.classList.remove("openMenu_class");
+    } else {
+      nav.classList.add("openMenu_class");
+    }
+  }
+
+
+
+
+
+
+
+  extend(ComposerBody.prototype, 'view', function (view) {
+    /* console.log(view.children[0].children) */
+    /* view.children[0].children.shift() */
+  });
+
+
+
+
+
+
+
+
+
+
+  
   override(IndexPage.prototype, 'view', function () {
     function sidebarItems2() {
       const items = new ItemList();

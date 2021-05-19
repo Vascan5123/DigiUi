@@ -3,30 +3,20 @@ import { extend, override } from 'flarum/extend';
 import PostUi from './components/PostUi';
 import CardItem from './components/CardItem';
 import IndexPage from 'flarum/components/IndexPage';
-import UserPage from 'flarum/components/UserPage';
 import DiscussionsUserPage from 'flarum/components/DiscussionsUserPage';
 import Button from 'flarum/components/Button';
-import Navigation from 'flarum/components/Navigation';
 import DiscussionList from 'flarum/components/DiscussionList';
-import DiscussionListItem from 'flarum/components/DiscussionListItem';
 import ComposerBody from 'flarum/components/ComposerBody';
-import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import DiscussionListItem from 'flarum/components/DiscussionListItem';
+
 import TextEditor from 'flarum/components/TextEditor';
-import avatar from 'flarum/helpers/avatar';
-import listItems from 'flarum/helpers/listItems';
-import ItemList from 'flarum/common/utils/ItemList';
-import LinkButton from 'flarum/common/components/LinkButton';
+
 
 
 app.initializers.add('vascan/digi-ui', () => {
   PostUi();
   extend(IndexPage.prototype, 'init', function () {
     /* this.gridLayout = m.prop(false); */
-  });
-  /* override(IndexPage.prototype, '', function () {
-  }); */
-  extend(IndexPage.prototype, 'view', function (view) {
-    view.children[1].children[0].children[0].attrs.className = "IndexPage-nav sideNav openMenu_class"
   });
   extend(IndexPage.prototype, 'actionItems', function (items) {
     // Stergerea butoanelor existente
@@ -52,37 +42,6 @@ app.initializers.add('vascan/digi-ui', () => {
       'Text_title_center_block',
       <p class="Text_title_center_block_class"><span> {app.translator.trans('digi-ui.forum.what_is_new')}</span></p>)
   });
-  // Adding menu button
-  override(Navigation.prototype, 'view', function () {
-    const { history, pane } = app;
-    return (
-      <div
-        className={'Navigation ButtonGroup ' + (this.attrs.className || '')}
-        onmouseenter={pane && pane.show.bind(pane)}
-        onmouseleave={pane && pane.onmouseleave.bind(pane)}
-      >
-        {history.canGoBack() ? [this.getBackButton(), this.getPaneButton()] : [getMenuButton(), this.getDrawerButton()]}
-      </div>
-    );
-  });
-  // This is Menu button
-  function getMenuButton() {
-    if (!app.current.matches(UserPage)) {
-      return (
-        <a id="menu_open_id" class="Button Button--icon hasIcon" title="Menu" active="false" type="button" onclick={menuOn.bind(this)}>
-          <i class="fas fa-bars Button-icon"></i>
-        </a>
-      );
-    }
-  }
-  function menuOn() {
-    let nav = document.getElementsByClassName("IndexPage-nav")[0];
-    if (nav.classList.contains('openMenu_class')) {
-      nav.classList.remove("openMenu_class");
-    } else {
-      nav.classList.add("openMenu_class");
-    }
-  }
   extend(DiscussionListItem.prototype, 'view', function (view) {
     let elementClassName;
     try {
@@ -151,6 +110,33 @@ app.initializers.add('vascan/digi-ui', () => {
       })
     }
   });
+  extend(ComposerBody.prototype, 'view', function (view) {
+    view.children[0].children[1].children[1].children[0].attrs.class1 = "textarea_create_post";
+    /* console.log(view.children[0].children[1].children[1].children[0].attrs.class1); */
+  })
+  /* override(ComposerBody.prototype, 'view', function () {
+    return (
+      <div className={'ComposerBody ' + (this.attrs.className || '')}>
+        <div className="ComposerBody-content">
+          <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
+          <div className="ComposerBody-editor">
+            {TextEditor.component({
+              class1: "textarea_create_post",
+              submitLabel: this.attrs.submitLabel,
+              placeholder: "",
+              disabled: this.loading || this.attrs.disabled,
+              composer: this.composer,
+              preview: this.jumpToPreview && this.jumpToPreview.bind(this),
+              onchange: this.composer.fields.content,
+              onsubmit: this.onsubmit.bind(this),
+              value: this.composer.fields.content(),
+            })}
+          </div>
+        </div>
+        {LoadingIndicator.component({ className: 'ComposerBody-loading' + (this.loading ? ' active' : '') })}
+      </div>
+    );
+  }) */
   extend(TextEditor.prototype, 'oninput', textEditorF);
   override(TextEditor.prototype, 'buildEditorParams', function () {
     return {
@@ -166,12 +152,10 @@ app.initializers.add('vascan/digi-ui', () => {
       },
     };
   })
-  extend(ComposerBody.prototype, 'view', function (view) {
-    view.children[0].children.shift()
-  });
 });
 function textEditorF() {
   if (app.current.matches(IndexPage)) {
+    console.log(document.getElementsByClassName("textarea_create_post"))
     let text = document.getElementsByClassName("textarea_create_post")[0].value;
     if (text.length > 0) {
       document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");

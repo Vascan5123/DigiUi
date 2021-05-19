@@ -194,7 +194,7 @@
     .DiscussionList-discussions--grid {
         justify-content: space-between;
     }
-    .IndexPage-nav, .sideNav {
+    .openMenu_class {
         min-width: 20%;
         zoom: 1.1;
         padding: 50px 25px 25px 25px;
@@ -211,7 +211,7 @@
     .IndexPage > .container {
         width: 1100px;
     }
-    .IndexPage-nav, .sideNav {
+    .openMenu_class {
         min-width: 15%;
         zoom: 1.1;
         padding: 50px 25px 25px 25px;
@@ -286,41 +286,9 @@
 
 
 
-.IndexPage {
- .openMenu_class {
-    transform: translate(0%, 0%) !important;
- }
- .IndexPage-nav, .sideNav {
-    overflow-y: scroll;
-    position: fixed;
-    left: 0%;
-    top: 0%;
-    z-index: 3;
-    height: 100%;
-    background: #f3f3f3;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transition: .3s;
+.ComposerBody-avatar {
+    display: none;
 }
-.sideNav::-webkit-scrollbar {
-    width: 0px;
-  }
-.sideNav::-webkit-scrollbar-track {
-    background: #fafafa;
-  }
-.sideNav::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-.sideNav::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-.sideNav > ul {
-    z-index: 3;
-    width: 100%;
-}
-}
-
-
-
 
 
 
@@ -468,29 +436,65 @@
 } */
 
 
-.dropdown-menu > li > a {
-    transition: .5s;
-}
-.openMenu_class {
-    width: 100px !important;
-    min-width: 5% !important;
-    background: transparent !important;
-    box-shadow: 0 0 10px rgba(0,0,0,0.0) !important;
-    padding: 50px 15px 15px 15px !important;
+
+.IndexPage {
+  /*   .openMenu_class {
+       overflow-y: scroll;
+       position: fixed;
+       left: 0%;
+       top: 0%;
+       z-index: 3;
+       height: 100%;
+       background: #f3f3f3;
+       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+       transition: .3s;
+   } */
+   .sideNav::-webkit-scrollbar {
+       width: 0px;
+     }
+   .sideNav::-webkit-scrollbar-track {
+       background: #fafafa;
+     }
+   .sideNav::-webkit-scrollbar-thumb {
+       background: #888;
+     }
+   .sideNav::-webkit-scrollbar-thumb:hover {
+       background: #555;
+     }
+   .sideNav > ul {
+       z-index: 3;
+       width: 100%;
+   }
+   }
+/* .openMenu_class {
     .IndexPage-newDiscussion {
-        display: flex !important;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         justify-self: center;
         text-align: center;
-        background: transparent !important;
-        padding: 5px !important;
-        color: #667c99 !important;
-        width: 100%;
+        background: #4C6F86 !important;
+        padding: 30px;
+        color: #fff !important;
     }
     .IndexPage-newDiscussion > i {
+        display: none !important;
+    }
+    .IndexPage-newDiscussion > span {
+        font-size: 15px !important;
+        font-weight: bold !important;
+        width: 100% !important;
+        overflow: hidden;
+    }
+    .dropdown-menu > li > a {
         display: block !important;
-        float: none !important;
+        flex-direction: unset !important;
+        justify-content: center !important;
+        justify-self: center !important;
+        text-align: left !important;
+    }
+    .dropdown-menu > li > a > i {
+        float: left !important;
         text-align: center;
         width: 100%;
         justify-content: center;
@@ -498,15 +502,78 @@
         font-size: 1.3rem !important;
         padding: 5px;
     }
-    .IndexPage-newDiscussion > span {
-        font-size: 10px !important;
+    .dropdown-menu > li > a > span {
+        font-size: 13px !important;
         font-weight: normal !important;
+        vertical-align: -webkit-baseline-middle;
+        padding-left: 10px;
+    }
+    .TagIcon{
+        margin-left: 6px !important;
+        padding: 5px;
+    }
+    .TagLinkButton > .Button-label {
+        vertical-align: top !important;
+    }
+}
+ */
+.dropdown-menu > li > a {
+    transition: .5s;
+}
+.TagsPage .sideNav {
+    white-space: unset !important;
+}
+.TagsPage .sideNav>ul>li, .TagsPage .sideNav .Dropdown-menu>li {
+    display: flex !important;
+    margin-left: 5px !important;
+}
+.IndexPage-nav .item-newDiscussion .Button {
+    width: auto !important;
+}
+.IndexPage-nav  {
+    width: 100px !important;
+    min-width: 5%;
+    background: transparent;
+    box-shadow: 0 0 10px rgba(0,0,0,0.0);
+    padding: 50px 15px 15px 15px !important;
+    overflow-y: scroll;
+    overflow-x: hidden !important;
+    position: fixed !important;
+    left: 0%;
+    top: 0%;
+    z-index: 3;
+    height: 100%;
+    transition: .3s;
+    .IndexPage-newDiscussion {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        text-align: center;
+        background: transparent;
+        padding: 0px;
+        color: #667c99;
+        background-color: transparent !important;
+    }
+    .IndexPage-newDiscussion > i {
+        display: block;
+        float: none !important;
+        text-align: center;
         width: 100%;
+        justify-content: center;
+        margin: 0px !important;
+        font-size: 1.3rem ;
+        padding: 5px;
+    }
+    .IndexPage-newDiscussion > span {
+        font-size: 10px;
+        font-weight: normal;
+        width: auto !important;
         overflow: hidden;
     }
     .dropdown-menu > li {
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
     }
     .dropdown-menu > li > a {
         display: flex;
@@ -517,16 +584,16 @@
         padding: 0px !important;
     }
     .dropdown-menu > li > a > i {
-        float: none !important;
+        float: none ;
         text-align: center;
-        width: 100%;
+        width: auto !important;
         justify-content: center;
         margin: auto !important;
         font-size: 1.3rem !important;
         padding: 5px;
     }
     .dropdown-menu > li > a > span {
-        font-size: 10px !important;
+        font-size: 10px ;
         font-weight: normal !important;
     }
     .TagLinkButton {
@@ -535,4 +602,9 @@
     .item-nav {
         margin: 0% !important;
     }
+}
+
+
+.TagHero, .TagHero--colored {
+    background-color: #e4edf6 !important
 }
