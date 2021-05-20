@@ -8,9 +8,8 @@ import Button from 'flarum/components/Button';
 import DiscussionList from 'flarum/components/DiscussionList';
 import ComposerBody from 'flarum/components/ComposerBody';
 import DiscussionListItem from 'flarum/components/DiscussionListItem';
-
+import TagHero from 'flarum/tags/components/TagHero';
 import TextEditor from 'flarum/components/TextEditor';
-
 
 
 app.initializers.add('vascan/digi-ui', () => {
@@ -152,6 +151,62 @@ app.initializers.add('vascan/digi-ui', () => {
       },
     };
   })
+
+
+  let url = window.location.href;
+  if (url.includes("/t/")) {
+    /* let re = '/';
+    let nameList = url.split(re);
+    let k = nameList.length - 1; */
+
+    extend(IndexPage.prototype, 'viewItems', function (items) {
+      // Удаление jumbotron
+      if (items.has('jumbotron')) {
+        items.remove('jumbotron');
+      }
+      if (items.has('Text_title_center_block')) {
+        items.remove('Text_title_center_block');
+      }
+      
+      /* override(TagHero.prototype, 'view', function (view) {
+        const tag = this.attrs.model;
+        const color = tag.color();
+
+        return (
+          <header className={'Hero TagHero' + (color ? ' TagHero--colored' : '')}
+            style={color ? { color: '#fff', backgroundColor: color } : ''}>
+            <div className="container">
+              <div className="containerNarrow">
+                <h2 className="Hero-title">{tag.icon() && tagIcon(tag, {}, { useColor: false })} {tag.name()}</h2>
+                <div className="Hero-subtitle">{tag.description()}</div>
+              </div>
+            </div>
+          </header>
+        );
+      }); */
+
+      // Изменение текста
+      /* if (items.has('Text_title_center_block')) {
+        items.replace('Text_title_center_block',
+          <p class="Text_title_center_block_class"><span>{nameList[k]}</span></p>);
+      } */
+    })
+  }
+  console.log(TagHero);
+
+
+
+  /* function funonload() {
+    let url = window.location.href;
+    if (url.includes("/t/")) {
+      console.log(document.getElementsByClassName("TagHero")[0].style.display = "none")
+    }
+  }
+  window.onload = funonload;
+ */
+
+
+
 });
 function textEditorF() {
   if (app.current.matches(IndexPage)) {

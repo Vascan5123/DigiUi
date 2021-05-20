@@ -5,6 +5,136 @@
 
 
 
+/* 
+
+.fileManager_open_2{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    background: #D7DFEA;
+    transition: .3s;
+}
+.fileManager_open_2:hover {
+    cursor: pointer;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+    background: #c0c8d3;
+}
+#fileManager_open_id {
+    margin: auto;
+}
+#fileManager_open_id > i {
+    font-size: 26px;
+    color: #667C99;
+}
+.fileManager_text {
+    color: #506C90;
+    font-size: 1.1rem;
+    font-weight: 400;
+} */
+
+
+
+/* .Header-navigation {
+    margin-left: 25px !important;
+} */
+
+
+
+  /*   .openMenu_class {
+       overflow-y: scroll;
+       position: fixed;
+       left: 0%;
+       top: 0%;
+       z-index: 3;
+       height: 100%;
+       background: #f3f3f3;
+       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+       transition: .3s;
+   } */
+
+
+/* .openMenu_class {
+    .IndexPage-newDiscussion {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        text-align: center;
+        background: #4C6F86 !important;
+        padding: 30px;
+        color: #fff !important;
+    }
+    .IndexPage-newDiscussion > i {
+        display: none !important;
+    }
+    .IndexPage-newDiscussion > span {
+        font-size: 15px !important;
+        font-weight: bold !important;
+        width: 100% !important;
+        overflow: hidden;
+    }
+    .dropdown-menu > li > a {
+        display: block !important;
+        flex-direction: unset !important;
+        justify-content: center !important;
+        justify-self: center !important;
+        text-align: left !important;
+    }
+    .dropdown-menu > li > a > i {
+        float: left !important;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        margin: auto !important;
+        font-size: 1.3rem !important;
+        padding: 5px;
+    }
+    .dropdown-menu > li > a > span {
+        font-size: 13px !important;
+        font-weight: normal !important;
+        vertical-align: -webkit-baseline-middle;
+        padding-left: 10px;
+    }
+    .TagIcon{
+        margin-left: 6px !important;
+        padding: 5px;
+    }
+    .TagLinkButton > .Button-label {
+        vertical-align: top !important;
+    }
+}
+ */
+/* .dropdown-menu > li > a {
+    transition: .5s;
+}
+.TagsPage .sideNav {
+    white-space: unset !important;
+}
+.TagsPage .sideNav>ul>li, .TagsPage .sideNav .Dropdown-menu>li {
+    display: flex !important;
+    margin-left: 5px !important;
+}
+.IndexPage-nav .item-newDiscussion .Button {
+    width: auto !important;
+} */
+
+
+
+
+
+
+
+
+
 
 
 

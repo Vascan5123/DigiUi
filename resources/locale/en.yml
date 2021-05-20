@@ -5,4 +5,4 @@ digi-ui:
         images: 'Images'
         trans_text: 'Transliterated text'
         cyr_text: 'Cyrillic text'
-    what_is_new: "What's new"
+    what_is_new: "Articole digitale publicate recent"
