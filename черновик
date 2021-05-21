@@ -5,6 +5,59 @@
 
 
 
+
+/* override(ComposerBody.prototype, 'view', function () {
+    return (
+      <div className={'ComposerBody ' + (this.attrs.className || '')}>
+        <div className="ComposerBody-content">
+          <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
+          <div className="ComposerBody-editor">
+            {TextEditor.component({
+              class1: "textarea_create_post",
+              submitLabel: this.attrs.submitLabel,
+              placeholder: "",
+              disabled: this.loading || this.attrs.disabled,
+              composer: this.composer,
+              preview: this.jumpToPreview && this.jumpToPreview.bind(this),
+              onchange: this.composer.fields.content,
+              onsubmit: this.onsubmit.bind(this),
+              value: this.composer.fields.content(),
+            })}
+          </div>
+        </div>
+        {LoadingIndicator.component({ className: 'ComposerBody-loading' + (this.loading ? ' active' : '') })}
+      </div>
+    );
+  }) */
+
+
+
+
+
+
+  
+
+
+/* override(TextEditor.prototype, 'buildEditorParams', function () {
+    return {
+      classNames: ['FormControl', 'Composer-flexible', 'TextEditor-editor', this.attrs.class1],
+      disabled: this.disabled,
+      placeholder: this.attrs.placeholder || '',
+      value: this.value,
+      oninput: this.oninput.bind(this),
+      inputListeners: [],
+      onsubmit: () => {
+        this.onsubmit();
+        m.redraw();
+      },
+    };
+  }) */
+
+
+
+
+
+
 /* 
 
 .fileManager_open_2{

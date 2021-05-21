@@ -111,55 +111,17 @@ app.initializers.add('vascan/digi-ui', () => {
   });
   extend(ComposerBody.prototype, 'view', function (view) {
     view.children[0].children[1].children[1].children[0].attrs.class1 = "textarea_create_post";
-    /* console.log(view.children[0].children[1].children[1].children[0].attrs.class1); */
   })
-  /* override(ComposerBody.prototype, 'view', function () {
-    return (
-      <div className={'ComposerBody ' + (this.attrs.className || '')}>
-        <div className="ComposerBody-content">
-          <ul className="ComposerBody-header">{listItems(this.headerItems().toArray())}</ul>
-          <div className="ComposerBody-editor">
-            {TextEditor.component({
-              class1: "textarea_create_post",
-              submitLabel: this.attrs.submitLabel,
-              placeholder: "",
-              disabled: this.loading || this.attrs.disabled,
-              composer: this.composer,
-              preview: this.jumpToPreview && this.jumpToPreview.bind(this),
-              onchange: this.composer.fields.content,
-              onsubmit: this.onsubmit.bind(this),
-              value: this.composer.fields.content(),
-            })}
-          </div>
-        </div>
-        {LoadingIndicator.component({ className: 'ComposerBody-loading' + (this.loading ? ' active' : '') })}
-      </div>
-    );
-  }) */
+  
   extend(TextEditor.prototype, 'oninput', textEditorF);
-  override(TextEditor.prototype, 'buildEditorParams', function () {
-    return {
-      classNames: ['FormControl', 'Composer-flexible', 'TextEditor-editor', this.attrs.class1],
-      disabled: this.disabled,
-      placeholder: this.attrs.placeholder || '',
-      value: this.value,
-      oninput: this.oninput.bind(this),
-      inputListeners: [],
-      onsubmit: () => {
-        this.onsubmit();
-        m.redraw();
-      },
-    };
+
+  extend(TextEditor.prototype, 'buildEditorParams', function (buildEditorParams) {
+    buildEditorParams.classNames.push(this.attrs.class1)
   })
 
-
-  let url = window.location.href;
-  if (url.includes("/t/")) {
-    /* let re = '/';
-    let nameList = url.split(re);
-    let k = nameList.length - 1; */
-
-    extend(IndexPage.prototype, 'viewItems', function (items) {
+  extend(IndexPage.prototype, 'viewItems', function (items) {
+    let url = window.location.href;
+    if (url.includes("/t/")) {
       // Удаление jumbotron
       if (items.has('jumbotron')) {
         items.remove('jumbotron');
@@ -167,55 +129,25 @@ app.initializers.add('vascan/digi-ui', () => {
       if (items.has('Text_title_center_block')) {
         items.remove('Text_title_center_block');
       }
-      
-      /* override(TagHero.prototype, 'view', function (view) {
-        const tag = this.attrs.model;
-        const color = tag.color();
-
-        return (
-          <header className={'Hero TagHero' + (color ? ' TagHero--colored' : '')}
-            style={color ? { color: '#fff', backgroundColor: color } : ''}>
-            <div className="container">
-              <div className="containerNarrow">
-                <h2 className="Hero-title">{tag.icon() && tagIcon(tag, {}, { useColor: false })} {tag.name()}</h2>
-                <div className="Hero-subtitle">{tag.description()}</div>
-              </div>
-            </div>
-          </header>
-        );
-      }); */
-
-      // Изменение текста
-      /* if (items.has('Text_title_center_block')) {
-        items.replace('Text_title_center_block',
-          <p class="Text_title_center_block_class"><span>{nameList[k]}</span></p>);
-      } */
-    })
-  }
-  console.log(TagHero);
-
-
-
-  /* function funonload() {
-    let url = window.location.href;
-    if (url.includes("/t/")) {
-      console.log(document.getElementsByClassName("TagHero")[0].style.display = "none")
+      extend(TagHero.prototype, 'view', function (view) {
+        view.attrs.className = "Hero TagHero2"
+      });
     }
-  }
-  window.onload = funonload;
- */
-
-
+  })
 
 });
 function textEditorF() {
   if (app.current.matches(IndexPage)) {
-    console.log(document.getElementsByClassName("textarea_create_post"))
     let text = document.getElementsByClassName("textarea_create_post")[0].value;
-    if (text.length > 0) {
+    if (text) {
+      if (text.length > 0) {
+        document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");
+      } else {
+        document.getElementsByClassName("fof-upload-button")[0].classList.add("big_upload_icon");
+      }
+    }
+    else {
       document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");
-    } else {
-      document.getElementsByClassName("fof-upload-button")[0].classList.add("big_upload_icon");
     }
   }
 }
