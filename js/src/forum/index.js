@@ -93,7 +93,7 @@ app.initializers.add('vascan/digi-ui', () => {
       );} */
   });
   override(require('@fof-upload').components.FileManagerButton.prototype, 'view', function (original) {
-    if (app.current.matches(IndexPage)) {
+    if (app.current.matches(IndexPage) && window.innerWidth > "425") {
       return Button.component({
         className: 'Button fof-upload-button Button--icon big_upload_icon',
         onclick: this.fileManagerButtonClicked.bind(this),
@@ -137,9 +137,9 @@ app.initializers.add('vascan/digi-ui', () => {
 
 });
 function textEditorF() {
-  if (app.current.matches(IndexPage)) {
+  if (app.current.matches(IndexPage) && window.innerWidth > "425") {
     let text = document.getElementsByClassName("textarea_create_post")[0].value;
-    if (text) {
+    if (text != undefined) {
       if (text.length > 0) {
         document.getElementsByClassName("fof-upload-button")[0].classList.remove("big_upload_icon");
       } else {

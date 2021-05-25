@@ -450,16 +450,24 @@
     justify-content: center;
 }
 
-.sideNav>ul, .item-newDiscussion {
-    width: 100% !important;
-}
 
+@media (min-width: 767px) {
+    .sideNav>ul, .item-newDiscussion {
+        width: 100% !important;
+    }
+    .IndexPage-nav  {
+        padding: 50px 15px 15px 15px !important;
+    }
+}
+@media (max-width: 767px) {
+    .IndexPage-nav  {
+    }
+}
 .IndexPage-nav  {
     width: 100px !important;
     min-width: 5%;
     background: transparent;
     box-shadow: 0 0 10px rgba(0,0,0,0.0);
-    padding: 50px 15px 15px 15px !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     position: fixed !important;
