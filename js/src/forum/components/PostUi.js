@@ -46,29 +46,31 @@ export default function () {
                 app.translator.trans('digi-ui.forum.postui.buttons.cyr_text')
             )
         );
-        items.add(
-            'Download',
-            Button.component({
-                id: "Button_download",
-                title: "Download",
-                className: 'Button Button--primary',
-                onclick: DownloadOn.bind(this),
-            },
-                app.translator.trans('digi-ui.forum.postui.buttons.download')
-            )
-        );
 
-        items.add(
-            'Download_All',
-            <div id="Button_download_all" class="d-none">
-                <ul class="Buttons_download">
-                    <li class="item-link-download l1"><a class="LinksButton Button Button--link" onclick={save_text_all.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_all')}</a></li>
-                    <li class="item-link-download l2"><a class="LinksButton Button Button--link" onclick={save_text_transliterat.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_transliterat')}</a></li>
-                    <li class="item-link-download l3"><a class="LinksButton Button Button--link" onclick={save_text_chirilică.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_chirilică')}</a></li>
-                </ul>
-            </div>
-        );
+        if (app.session.user != undefined) {
+            items.add(
+                'Download',
+                Button.component({
+                    id: "Button_download",
+                    title: "Download",
+                    className: 'Button Button--primary',
+                    onclick: DownloadOn.bind(this),
+                },
+                    app.translator.trans('digi-ui.forum.postui.buttons.download')
+                )
+            );
 
+            items.add(
+                'Download_All',
+                <div id="Button_download_all" class="d-none">
+                    <ul class="Buttons_download">
+                        <li class="item-link-download l1"><a class="LinksButton Button Button--link" onclick={save_text_all.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_all')}</a></li>
+                        <li class="item-link-download l2"><a class="LinksButton Button Button--link" onclick={save_text_transliterat.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_transliterat')}</a></li>
+                        <li class="item-link-download l3"><a class="LinksButton Button Button--link" onclick={save_text_chirilică.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_chirilică')}</a></li>
+                    </ul>
+                </div>
+            );
+        }
 
         function DownloadOn() {
             var b1 = document.getElementById("Button_download_all");
