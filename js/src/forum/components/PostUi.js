@@ -85,8 +85,8 @@ export default function () {
 
 
         function save_text_all() {
-            let chirilic = document.getElementsByClassName("chirilic")[0].innerHTML;
-            let transliterat = document.getElementsByClassName("transliterat")[0].innerHTML;
+            let chirilic = document.getElementsByClassName("chirilic")[0].textContent;
+            let transliterat = document.getElementsByClassName("transliterat")[0].textContent;
             let title = app.title;
             let tags_included = app.current.data.discussion.payload.included;
             let tags = []
@@ -106,7 +106,7 @@ export default function () {
         }
 
         function save_text_transliterat() {
-            let transliterat = document.getElementsByClassName("transliterat")[0].innerHTML;
+            let transliterat = document.getElementsByClassName("transliterat")[0].textContent;
             let title = app.title;
             let tags_included = app.current.data.discussion.payload.included;
             let tags = []
@@ -126,7 +126,7 @@ export default function () {
         }
 
         function save_text_chirilică() {
-            let chirilic = document.getElementsByClassName("chirilic")[0].innerHTML;
+            let chirilic = document.getElementsByClassName("chirilic")[0].textContent;
             let title = app.title;
             let tags_included = app.current.data.discussion.payload.included;
             let tags = []
