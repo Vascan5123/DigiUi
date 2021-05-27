@@ -6,6 +6,124 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        /* let array2 = [
+            "111",
+            "222",
+            "333"
+        ]
+        items.add(
+            'download',
+            SplitDropdown.component(
+                {
+                    icon: 'fas fa-ellipsis-v',
+                    className: 'App-primaryControl',
+                    buttonClassName: 'Button--primary',
+                },
+                array2
+            )
+        ); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* items.add(
+            'Download_Transliterat',
+            Button.component({
+                id: "Button_download_transliterat",
+                title: "Download Transliterat",
+                className: 'Button Button--primary d-none Buttons_download',
+                onclick: DownloadOn.bind(this),
+            },
+                app.translator.trans('digi-ui.forum.postui.buttons.download_transliterat')
+            )
+        ); */
+        /*  items.add(
+             'Download_Chirilică',
+             Button.component({
+                 id: "Button_download_chirilică",
+                 title: "Download Chirilică",
+                 className: 'Button Button--primary d-none Buttons_download',
+                 onclick: DownloadOn.bind(this),
+             },
+                 app.translator.trans('digi-ui.forum.postui.buttons.download_chirilică')
+             )
+         ); */
+
+
+
+
+
+
+
+
+
+
+        /* function imageOn() {
+
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] != undefined) {
+                    let y = data[i].getElementsByTagName("img");
+                    if (y.length == 0) {
+                        data[i].style.display = "none"
+                    } else {
+                        data[i].style.display = "block"
+                    }
+                }
+            }
+        }
+        function transliteranOn() {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] != undefined) {
+                    let y = data[i].getElementsByTagName("img");
+                    if (y.length == 0 && !/[^a-z][а-я]/.test(data[i].innerHTML)) {
+                        data[i].style.display = "block"
+                    } else {
+                        data[i].style.display = "none"
+                    }
+                }
+            }
+        }
+
+        function chirilicaOn() {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] != undefined) {
+                    let y = data[i].getElementsByTagName("img");
+                    if (y.length == 0 && /[^a-z][а-я]/.test(data[i].innerHTML)) {
+                        data[i].style.display = "block"
+                    } else {
+                        data[i].style.display = "none"
+                    }
+                }
+            }
+        } */
+
+
+
+
+
+
 /* override(ComposerBody.prototype, 'view', function () {
     return (
       <div className={'ComposerBody ' + (this.attrs.className || '')}>

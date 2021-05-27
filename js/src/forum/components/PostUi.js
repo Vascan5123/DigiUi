@@ -1,6 +1,9 @@
 import { extend } from 'flarum/common/extend';
 import DiscussionPage from 'flarum/components/DiscussionPage';
 import Button from 'flarum/components/Button';
+import SelectDropdown from 'flarum/common/components/SelectDropdown';
+import DiscussionControls from 'flarum/utils/DiscussionControls';
+import { saveAs } from 'file-saver';
 
 export default function () {
     extend(DiscussionPage.prototype, 'sidebarItems', function (items) {
@@ -43,9 +46,128 @@ export default function () {
                 app.translator.trans('digi-ui.forum.postui.buttons.cyr_text')
             )
         );
+        items.add(
+            'Download',
+            Button.component({
+                id: "Button_download",
+                title: "Download",
+                className: 'Button Button--primary',
+                onclick: DownloadOn.bind(this),
+            },
+                app.translator.trans('digi-ui.forum.postui.buttons.download')
+            )
+        );
+
+        items.add(
+            'Download_All',
+            <div id="Button_download_all" class="d-none">
+                <ul class="Buttons_download">
+                    <li class="item-link-download"><a class="LinksButton Button Button--link" onclick={save_text_all.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_all')}</a></li>
+                    <li class="item-link-download"><a class="LinksButton Button Button--link" onclick={save_text_transliterat.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_transliterat')}</a></li>
+                    <li class="item-link-download"><a class="LinksButton Button Button--link" onclick={save_text_chirilică.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_chirilică')}</a></li>
+                </ul>
+            </div>
+        );
 
 
-        const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
+        function DownloadOn() {
+            var b1 = document.getElementById("Button_download_all");
+            var b2 = document.getElementById("Button_download");
+            if (b1.classList.contains("d-none")) {
+                b1.classList.remove("d-none");
+                b2.classList.add("disabled");
+            } else {
+                b1.classList.add("d-none");
+                b2.classList.remove("disabled");
+            }
+        }
+
+
+
+        function save_text_all() {
+            let chirilic = document.getElementsByClassName("chirilic")[0].innerHTML;
+            let transliterat = document.getElementsByClassName("transliterat")[0].innerHTML;
+            let title = app.title;
+            let tags_included = app.current.data.discussion.payload.included;
+            let tags = []
+            for (let i = 0; i < tags_included.length; i++) {
+                if (tags_included[i].type == "tags")
+                    if (tags_included[i].attributes.name != "Spre editare" || tags_included[i].attributes.name != "Verificat de Editor") {
+                        tags.push(tags_included[i].attributes.name)
+                    }
+            }
+            tags = tags.join(', ');
+
+            let author = document.getElementsByClassName("PostUser")[0].getElementsByClassName("username")[0].innerHTML
+
+            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Chirilic: ", chirilic, "\n\n\n", "Transliterat: ", transliterat, "\n\n\n", "Autor: ", author],
+                { type: "text/plain;charset=utf-8" });
+            saveAs(blob, title + ".txt");
+        }
+
+        function save_text_transliterat() {
+            let transliterat = document.getElementsByClassName("transliterat")[0].innerHTML;
+            let title = app.title;
+            let tags_included = app.current.data.discussion.payload.included;
+            let tags = []
+            for (let i = 0; i < tags_included.length; i++) {
+                if (tags_included[i].type == "tags")
+                    if (tags_included[i].attributes.name != "Spre editare" || tags_included[i].attributes.name != "Verificat de Editor") {
+                        tags.push(tags_included[i].attributes.name)
+                    }
+            }
+            tags = tags.join(', ');
+
+            let author = document.getElementsByClassName("PostUser")[0].getElementsByClassName("username")[0].innerHTML
+
+            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Transliterat: ", transliterat, "\n\n\n", "Autor: ", author],
+                { type: "text/plain;charset=utf-8" });
+            saveAs(blob, title + ".txt");
+        }
+
+        function save_text_chirilică() {
+            let chirilic = document.getElementsByClassName("chirilic")[0].innerHTML;
+            let title = app.title;
+            let tags_included = app.current.data.discussion.payload.included;
+            let tags = []
+            for (let i = 0; i < tags_included.length; i++) {
+                if (tags_included[i].type == "tags")
+                    if (tags_included[i].attributes.name != "Spre editare" || tags_included[i].attributes.name != "Verificat de Editor") {
+                        tags.push(tags_included[i].attributes.name)
+                    }
+            }
+            tags = tags.join(', ');
+
+            let author = document.getElementsByClassName("PostUser")[0].getElementsByClassName("username")[0].innerHTML
+
+            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Chirilic: ", chirilic, "\n\n\n", "Autor: ", author],
+                { type: "text/plain;charset=utf-8" });
+            saveAs(blob, title + ".txt");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* const cyrillicPattern = /^\p{Script=Cyrillic}+$/u; */
         let data = document.getElementsByClassName("PostStream-item")[0];
         data = document.getElementsByClassName("Post-body")[0]
         data = document.getElementsByTagName("p");
@@ -177,47 +299,6 @@ export default function () {
                 }
             }
         }
-
-
-        /* function imageOn() {
-
-            for (let i = 0; i < data.length; i++) {
-                if (data[i] != undefined) {
-                    let y = data[i].getElementsByTagName("img");
-                    if (y.length == 0) {
-                        data[i].style.display = "none"
-                    } else {
-                        data[i].style.display = "block"
-                    }
-                }
-            }
-        }
-        function transliteranOn() {
-            for (let i = 0; i < data.length; i++) {
-                if (data[i] != undefined) {
-                    let y = data[i].getElementsByTagName("img");
-                    if (y.length == 0 && !/[^a-z][а-я]/.test(data[i].innerHTML)) {
-                        data[i].style.display = "block"
-                    } else {
-                        data[i].style.display = "none"
-                    }
-                }
-            }
-        }
-
-        function chirilicaOn() {
-            for (let i = 0; i < data.length; i++) {
-                if (data[i] != undefined) {
-                    let y = data[i].getElementsByTagName("img");
-                    if (y.length == 0 && /[^a-z][а-я]/.test(data[i].innerHTML)) {
-                        data[i].style.display = "block"
-                    } else {
-                        data[i].style.display = "none"
-                    }
-                }
-            }
-        } */
-
 
 
 

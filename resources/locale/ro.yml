@@ -5,4 +5,8 @@ digi-ui:
         images: 'Imagini'
         trans_text: 'Text transliterat'
         cyr_text: 'Text in chirilică'
+        download: 'Descarcă'
+        download_all: 'Descarcă ambele texte'
+        download_transliterat: 'Descarcă textul transliterat'
+        download_chirilică: 'Descarcă textul in chirilică'
     what_is_new: 'Articole digitale publicate recent'
