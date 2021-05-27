@@ -62,9 +62,9 @@ export default function () {
             'Download_All',
             <div id="Button_download_all" class="d-none">
                 <ul class="Buttons_download">
-                    <li class="item-link-download"><a class="LinksButton Button Button--link" onclick={save_text_all.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_all')}</a></li>
-                    <li class="item-link-download"><a class="LinksButton Button Button--link" onclick={save_text_transliterat.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_transliterat')}</a></li>
-                    <li class="item-link-download"><a class="LinksButton Button Button--link" onclick={save_text_chirilică.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_chirilică')}</a></li>
+                    <li class="item-link-download l1"><a class="LinksButton Button Button--link" onclick={save_text_all.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_all')}</a></li>
+                    <li class="item-link-download l2"><a class="LinksButton Button Button--link" onclick={save_text_transliterat.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_transliterat')}</a></li>
+                    <li class="item-link-download l3"><a class="LinksButton Button Button--link" onclick={save_text_chirilică.bind(this)}>{app.translator.trans('digi-ui.forum.postui.buttons.download_chirilică')}</a></li>
                 </ul>
             </div>
         );
@@ -186,7 +186,9 @@ export default function () {
         if (all_transliterat.length < 1) {
             let button = document.getElementById("Button_text_transliterat")
             if (button) {
-                button.classList.add("disabled")
+                button.classList.add("disabled");
+                document.getElementsByClassName("l1")[0].style.display = "none";
+                document.getElementsByClassName("l2")[0].style.display = "none";
             }
         }
 
@@ -194,7 +196,9 @@ export default function () {
         if (all_chirilic.length < 1) {
             let button = document.getElementById("Button_text_chirilica")
             if (button) {
-                button.classList.add("disabled")
+                button.classList.add("disabled");
+                document.getElementsByClassName("l1")[0].style.display = "none";
+                document.getElementsByClassName("l3")[0].style.display = "none";
             }
         }
 
