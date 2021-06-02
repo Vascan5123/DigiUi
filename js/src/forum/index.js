@@ -112,7 +112,7 @@ app.initializers.add('vascan/digi-ui', () => {
   extend(ComposerBody.prototype, 'view', function (view) {
     view.children[0].children[1].children[1].children[0].attrs.class1 = "textarea_create_post";
   })
-  
+
   extend(TextEditor.prototype, 'oninput', textEditorF);
 
   extend(TextEditor.prototype, 'buildEditorParams', function (buildEditorParams) {
@@ -129,9 +129,13 @@ app.initializers.add('vascan/digi-ui', () => {
       if (items.has('Text_title_center_block')) {
         items.remove('Text_title_center_block');
       }
-      extend(TagHero.prototype, 'view', function (view) {
-        view.attrs.className = "Hero TagHero2"
-      });
+      if (TagHero != undefined) {
+        extend(TagHero.prototype, 'view', function (view) {
+          if (view != undefined) {
+            view.attrs.className = "Hero TagHero2"
+          }
+        });
+      }
     }
   })
 
