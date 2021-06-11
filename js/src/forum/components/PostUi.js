@@ -87,8 +87,22 @@ export default function () {
 
 
         function save_text_all() {
-            let chirilic = document.getElementsByClassName("chirilic")[0].textContent;
-            let transliterat = document.getElementsByClassName("transliterat")[0].textContent;
+
+
+            let transliterat = document.getElementsByClassName("transliterat");
+            let transliteratString = "";
+            for(let x=0;x<transliterat.length;x++){
+                transliteratString = transliteratString + "  " + transliterat[x].textContent;
+            }
+
+            let chirilic = document.getElementsByClassName("chirilic");
+            let chirilicString = "";
+            for(let x=0;x<chirilic.length;x++){
+                chirilicString = chirilicString + "  " + chirilic[x].textContent;
+            }
+
+
+
             let title = app.title;
             let tags_included = app.current.data.discussion.payload.included;
             let tags = []
@@ -102,13 +116,20 @@ export default function () {
 
             let author = document.getElementsByClassName("PostUser")[0].getElementsByClassName("username")[0].innerHTML
 
-            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Chirilic: ", chirilic, "\n\n\n", "Transliterat: ", transliterat, "\n\n\n", "Autor: ", author],
+            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Chirilic: ", chirilicString, "\n\n\n", "Transliterat: ", transliteratString, "\n\n\n", "Autor: ", author],
                 { type: "text/plain;charset=utf-8" });
             saveAs(blob, title + ".txt");
         }
 
         function save_text_transliterat() {
-            let transliterat = document.getElementsByClassName("transliterat")[0].textContent;
+            /* let transliterat = document.getElementsByClassName("transliterat")[0].textContent; */
+
+            let transliterat = document.getElementsByClassName("transliterat");
+            let transliteratString = "";
+            for(let x=0;x<transliterat.length;x++){
+                transliteratString = transliteratString + "  " + transliterat[x].textContent;
+            }
+
             let title = app.title;
             let tags_included = app.current.data.discussion.payload.included;
             let tags = []
@@ -122,13 +143,19 @@ export default function () {
 
             let author = document.getElementsByClassName("PostUser")[0].getElementsByClassName("username")[0].innerHTML
 
-            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Transliterat: ", transliterat, "\n\n\n", "Autor: ", author],
+            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Transliterat: ", transliteratString, "\n\n\n", "Autor: ", author],
                 { type: "text/plain;charset=utf-8" });
             saveAs(blob, title + ".txt");
         }
 
         function save_text_chirilică() {
-            let chirilic = document.getElementsByClassName("chirilic")[0].textContent;
+
+            let chirilic = document.getElementsByClassName("chirilic");
+            let chirilicString = "";
+            for(let x=0;x<chirilic.length;x++){
+                chirilicString = chirilicString + "  " + chirilic[x].textContent;
+            }
+
             let title = app.title;
             let tags_included = app.current.data.discussion.payload.included;
             let tags = []
@@ -142,7 +169,7 @@ export default function () {
 
             let author = document.getElementsByClassName("PostUser")[0].getElementsByClassName("username")[0].innerHTML
 
-            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Chirilic: ", chirilic, "\n\n\n", "Autor: ", author],
+            var blob = new Blob([title, "\n\n\n", "Metadata: ", tags, "\n\n\n", "Chirilic: ", chirilicString, "\n\n\n", "Autor: ", author],
                 { type: "text/plain;charset=utf-8" });
             saveAs(blob, title + ".txt");
         }
@@ -206,13 +233,13 @@ export default function () {
 
         function imageOn() {
             if (!document.getElementById("Button_text_imagini").classList.contains("disabled")) {
-                let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                 if (span.length > 0) {
                     for (let i = 0; i < span.length; i++) {
                         span[i].style.display = "none"
                     }
 
-                    let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+                    let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("img");
                     for (let i = 0; i < images.length; i++) {
                         images[i].style.display = "block"
                     }
@@ -234,20 +261,20 @@ export default function () {
 
         function transliteranOn() {
             if (!document.getElementById("Button_text_transliterat").classList.contains("disabled")) {
-                let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                 if (span.length > 0) {
-                    let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                    let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                     for (let i = 0; i < transliterat.length; i++) {
                         if (transliterat[i].classList.contains('transliterat')) {
                             transliterat[i].style.display = "block"
                         }
                     }
 
-                    let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+                    let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("img");
                     for (let i = 0; i < images.length; i++) {
                         images[i].style.display = "none"
                     }
-                    let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                    let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                     for (let i = 0; i < chirilic.length; i++) {
                         if (chirilic[i].classList.contains('chirilic')) {
                             chirilic[i].style.display = "none"
@@ -271,20 +298,20 @@ export default function () {
 
         function chirilicaOn() {
             if (!document.getElementById("Button_text_chirilica").classList.contains("disabled")) {
-                let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                let span = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                 if (span.length > 0) {
-                    let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                    let chirilic = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                     for (let i = 0; i < chirilic.length; i++) {
                         if (chirilic[i].classList.contains('chirilic')) {
                             chirilic[i].style.display = "block"
                         }
                     }
 
-                    let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("img");
+                    let images = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("img");
                     for (let i = 0; i < images.length; i++) {
                         images[i].style.display = "none"
                     }
-                    let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("p")[0].getElementsByTagName("span");
+                    let transliterat = document.getElementsByClassName("PostStream-item")[0].getElementsByClassName("Post-body")[0].getElementsByTagName("span");
                     for (let i = 0; i < transliterat.length; i++) {
                         if (transliterat[i].classList.contains('transliterat')) {
                             transliterat[i].style.display = "none"
