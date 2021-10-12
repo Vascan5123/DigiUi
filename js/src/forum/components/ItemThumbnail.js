@@ -30,12 +30,12 @@ export default class ItemThumbnail extends Component {
             attrs.onload = this.onLoad.bind(this);
         }
 
-        // Modified by BlockCat
+        // Modified by BlockCat and by Tudor on 12 october 2021 (l size image)
         if (this.attrs.src.includes('imgur')) {
             let image_url= this.attrs.src;
             let image_prefix = image_url.substring(0, image_url.lastIndexOf("."));
             let image_sufix = image_url.substring(image_url.lastIndexOf("."));
-            attrs[loaded ? 'src' : 'data-src'] = image_prefix + 's' + image_sufix;
+            attrs[loaded ? 'src' : 'data-src'] = image_prefix + 'l' + image_sufix;
         }
         else {
             // Original instruction
