@@ -11,8 +11,36 @@ import DiscussionListItem from 'flarum/components/DiscussionListItem';
 import TagHero from 'flarum/tags/components/TagHero';
 import TextEditor from 'flarum/components/TextEditor';
 
+// modified by Tudor on 13 september 2021
+// added thumbail
+import get from 'lodash/get';
+import Model from 'flarum/Model';
+import Discussion from 'flarum/models/Discussion';
+import ItemThumbnail from './components/ItemThumbnail';
+
+const find = (obj, clazz) => obj && obj.children && obj.children.filter(e => get(e, 'attrs.className', '').indexOf(clazz) !== -1)[0];
 
 app.initializers.add('vascan/digi-ui', () => {
+  // added thumbnail
+  // modified by Tudor 13 september 2021
+  Discussion.prototype.customThumbnail = Model.attribute('customThumbnail');
+
+  extend(DiscussionListItem.prototype, 'view', function(vdom) {
+    const image = this.attrs.discussion.customThumbnail();
+  
+    if (!image) return;
+
+    const content = find(vdom, 'DiscussionListItem-content');
+    const author = find(content, 'DiscussionListItem-author');
+    const avatar = find(author, 'Avatar');
+    
+    if (!avatar) return;
+
+    delete avatar.attrs.src;
+    
+    author.children[author.children.indexOf(avatar)] = <ItemThumbnail elementAttrs={avatar.attrs} src={image} />;
+  });
+  
   PostUi();
   extend(IndexPage.prototype, 'init', function () {
     /* this.gridLayout = m.prop(false); */
@@ -32,7 +60,6 @@ app.initializers.add('vascan/digi-ui', () => {
       items.remove('sort');
     }
     // Добавляем блок jumbotron сверху
-    console.log()
     items.add(
       'jumbotron',
       <div class="jumbotron_class"></div>)
@@ -41,6 +68,9 @@ app.initializers.add('vascan/digi-ui', () => {
       'Text_title_center_block',
       <p class="Text_title_center_block_class"><span> {app.translator.trans('digi-ui.forum.what_is_new')}</span></p>)
   });
+
+
+  // Grid style ListItem
   extend(DiscussionListItem.prototype, 'view', function (view) {
     let elementClassName;
     try {
@@ -120,8 +150,9 @@ app.initializers.add('vascan/digi-ui', () => {
   })
 
   extend(IndexPage.prototype, 'viewItems', function (items) {
-    let url = window.location.href;
-    if (url.includes("/t/")) {
+    // old verification - let url = window.location.href; url.includes("/t/")
+    // modified by Tudor on 21.09.2021
+    if (!app.current.matches(IndexPage)) {
       // Удаление jumbotron
       if (items.has('jumbotron')) {
         items.remove('jumbotron');

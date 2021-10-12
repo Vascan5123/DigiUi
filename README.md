@@ -9,13 +9,7 @@ A [Flarum](http://flarum.org) extension.
 Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually with composer:
 
 ```sh
-composer require vascan/digi-ui
-```
-
-### Updating
-
-```sh
-composer update vascan/digi-ui
+composer require vascan/digi-ui *@dev
 ```
 
 ### Links
